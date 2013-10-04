@@ -3,6 +3,8 @@ from collections.abc import MutableMapping
 
 
 class Node(MutableMapping):
+    __slots__ = ('_parent', '_symbol', '_node_id', '_children')
+
     def __init__(self, parent, symbol, node_id):
         self._parent = parent
         self._symbol = symbol

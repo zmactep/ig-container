@@ -1,5 +1,6 @@
 __author__ = 'mactep'
 
+from memory_profiler import profile
 from collections.abc import Iterable, Sized
 
 from igct.trie.impl import TrieImpl
@@ -7,6 +8,8 @@ from igct.trie.cont import TrieContainer
 
 
 class Trie(Iterable, Sized):
+    __slots__ = ('_trie', '_cont', '_dfs_cache')
+
     def __init__(self):
         self._trie = TrieImpl()
         self._cont = TrieContainer([self._trie.root])
@@ -78,9 +81,8 @@ class Trie(Iterable, Sized):
     def __str__(self):
         return "Trie [len=%i]" % len(self)
 
-
+@profile
 def f(alpha, ns, nl, eps=0):
-    from collections import Counter
     from numpy.random import randint
     a = Trie()
     total = 0
@@ -90,11 +92,8 @@ def f(alpha, ns, nl, eps=0):
         i = 0
         for _ in range(n):
             i = a.insert(i, chr(randint(alpha)))
-    l = []
-    for i in a:
-        l.append(len(a.keysof(i)))
-    return (len(a) - 1) / total, Counter(l)
+    return a, (len(a) - 1) / total
 
 
 def memtest():
-    f(4, 10000, 100)
+    return f(4, 1000, 100)

@@ -1,3 +1,10 @@
+# python
+__pycache__
+*.pyc
+
+# IDE
+.idea
+
 # Compiled Object files
 *.slo
 *.lo

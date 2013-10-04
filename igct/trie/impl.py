@@ -5,6 +5,8 @@ from igct.trie.node import Node
 
 
 class TrieImpl(Sized):
+    __slots__ = ('_root', '_size')
+
     def __init__(self):
         self._root = Node(None, None, 0)
         self._size = 1

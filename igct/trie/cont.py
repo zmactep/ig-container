@@ -3,6 +3,8 @@ from collections.abc import Sequence
 
 
 class TrieContainerData(object):
+    __slots__ = ('_node', '_data')
+
     def __init__(self, node):
         self._node = node
         self._data = None
@@ -20,6 +22,8 @@ class TrieContainerData(object):
 
 
 class TrieContainer(Sequence):
+    __slots__ = ('_cont')
+
     def __init__(self, data=None):
         self._cont = [TrieContainerData(node) for node in data] if data else []
 
